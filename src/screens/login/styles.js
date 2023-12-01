@@ -69,6 +69,50 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
+  providerTypeContainer: {
+    alignItems: "flex-start",
+    marginVertical: verticalScale(5),
+    marginBottom: verticalScale(8),
+  },
+  providerTypeButtonsContainer: {
+    borderBottomWidth: 1,
+    borderColor: colors.lightGrey,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    paddingBottom: verticalScale(1),
+  },
+  providerTypeButton: {
+    borderWidth: 1,
+    borderColor: colors.grey,
+    paddingHorizontal: horizontalScale(5),
+    paddingVertical: verticalScale(3),
+    borderRadius: 4,
+    marginHorizontal: horizontalScale(2),
+    marginVertical: verticalScale(2),
+    flexDirection: "row",
+  },
+  providerTypeButtonSelected: {
+    borderWidth: 1,
+    borderColor: colors.yellow,
+    paddingHorizontal: horizontalScale(5),
+    paddingVertical: verticalScale(3),
+    borderRadius: 4,
+    marginHorizontal: horizontalScale(2),
+    marginVertical: verticalScale(2),
+    backgroundColor: colors.yellow,
+    flexDirection: "row",
+  },
+  providerTypeButtonText: {
+    fontSize: scaleFontSize(14),
+    fontFamily: "InterMedium",
+    marginRight: horizontalScale(4),
+  },
+  providerTypeButtonTextSelected: {
+    fontSize: scaleFontSize(14),
+    fontFamily: "InterMedium",
+    color: colors.white,
+    marginRight: horizontalScale(4),
+  },
 });
 
 export default styles;

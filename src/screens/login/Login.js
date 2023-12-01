@@ -45,7 +45,9 @@ const Login = () => {
 
   const [emailError, setEmailError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
+  const [providerType, setProviderType] = useState(null);
   const [selectedAccountError, setSelectedAccountError] = useState(null);
+  const [providerTypeError, setProviderTypeError] = useState(null);
 
   const handleAccountSelection = (choosedOption) => {
     setSelectedAccountError(null);
@@ -58,15 +60,19 @@ const Login = () => {
       email,
       password,
       selectedAccount,
+      providerType,
     });
 
-    const [hasErrors, { emailError, passwordError, selectedAccountError }] =
-      result;
+    const [
+      hasErrors,
+      { emailError, passwordError, selectedAccountError, providerTypeError },
+    ] = result;
 
     if (hasErrors) {
       setEmailError(emailError);
       setPasswordError(passwordError);
       setSelectedAccountError(selectedAccountError);
+      setProviderTypeError(providerTypeError);
     } else {
       // Call your API or navigate to the next screen here
       // Service User
@@ -103,7 +109,7 @@ const Login = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ email, password }),
+          body: JSON.stringify({ email, password, providerType }),
         })
           .then((response) => response.json())
           .then((data) => {
@@ -129,6 +135,7 @@ const Login = () => {
     setEmailError(null);
     setPasswordError(null);
     setSelectedAccountError(null);
+    setProviderTypeError(null);
   };
 
   return (
@@ -143,6 +150,8 @@ const Login = () => {
       <Text style={styles.subHeading}>
         Sign in to effortlessly manage your vehicle needs, all in one place
       </Text>
+
+      {/*  */}
       <View style={styles.inputContainer}>
         <TextInput
           inputValue={(input) => {
@@ -177,6 +186,161 @@ const Login = () => {
           </TouchableOpacity>
         </View>
         {passwordError && <ErrorMessage content={passwordError} />}
+
+        {/* Provider Type */}
+        {selectedAccount === "SERVICE_PROVIDER" ? (
+          <View style={styles.providerTypeContainer}>
+            <Text style={styles.subHeading}>Select your provider type:</Text>
+            <View style={styles.providerTypeButtonsContainer}>
+              <TouchableOpacity
+                onPress={() => {
+                  setProviderType("CAR_WASH");
+                  setProviderTypeError(null);
+                }}
+                style={
+                  providerType === "CAR_WASH"
+                    ? styles.providerTypeButtonSelected
+                    : styles.providerTypeButton
+                }
+              >
+                <Text
+                  style={
+                    providerType === "CAR_WASH"
+                      ? styles.providerTypeButtonTextSelected
+                      : styles.providerTypeButtonText
+                  }
+                >
+                  Car Wash
+                </Text>
+                {providerType === "CAR_WASH" ? (
+                  <Icon
+                    style={styles.checkmarkCircle}
+                    name={"checkmark-circle"}
+                    size={20}
+                    color={colors.white}
+                  />
+                ) : (
+                  <Icon
+                    style={styles.checkmarkCircle}
+                    name={"close-circle"}
+                    size={20}
+                    color={colors.primary}
+                  />
+                )}
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  setProviderType("FUEL_BOOKING");
+                  setProviderTypeError(null);
+                }}
+                style={
+                  providerType === "FUEL_BOOKING"
+                    ? styles.providerTypeButtonSelected
+                    : styles.providerTypeButton
+                }
+              >
+                <Text
+                  style={
+                    providerType === "FUEL_BOOKING"
+                      ? styles.providerTypeButtonTextSelected
+                      : styles.providerTypeButtonText
+                  }
+                >
+                  Fuel Booking
+                </Text>
+                {providerType === "FUEL_BOOKING" ? (
+                  <Icon
+                    style={styles.checkmarkCircle}
+                    name={"checkmark-circle"}
+                    size={20}
+                    color={colors.white}
+                  />
+                ) : (
+                  <Icon
+                    style={styles.checkmarkCircle}
+                    name={"close-circle"}
+                    size={20}
+                    color={colors.primary}
+                  />
+                )}
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  setProviderType("CAR_MAINTENANCE");
+                  setProviderTypeError(null);
+                }}
+                style={
+                  providerType === "CAR_MAINTENANCE"
+                    ? styles.providerTypeButtonSelected
+                    : styles.providerTypeButton
+                }
+              >
+                <Text
+                  style={
+                    providerType === "CAR_MAINTENANCE"
+                      ? styles.providerTypeButtonTextSelected
+                      : styles.providerTypeButtonText
+                  }
+                >
+                  Car Maintenance
+                </Text>
+                {providerType === "CAR_MAINTENANCE" ? (
+                  <Icon
+                    style={styles.checkmarkCircle}
+                    name={"checkmark-circle"}
+                    size={20}
+                    color={colors.white}
+                  />
+                ) : (
+                  <Icon
+                    style={styles.checkmarkCircle}
+                    name={"close-circle"}
+                    size={20}
+                    color={colors.primary}
+                  />
+                )}
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  setProviderType("CAR_BOOKING");
+                  setProviderTypeError(null);
+                }}
+                style={
+                  providerType === "CAR_BOOKING"
+                    ? styles.providerTypeButtonSelected
+                    : styles.providerTypeButton
+                }
+              >
+                <Text
+                  style={
+                    providerType === "CAR_BOOKING"
+                      ? styles.providerTypeButtonTextSelected
+                      : styles.providerTypeButtonText
+                  }
+                >
+                  Car Booking
+                </Text>
+                {providerType === "CAR_BOOKING" ? (
+                  <Icon
+                    style={styles.checkmarkCircle}
+                    name={"checkmark-circle"}
+                    size={20}
+                    color={colors.white}
+                  />
+                ) : (
+                  <Icon
+                    style={styles.checkmarkCircle}
+                    name={"close-circle"}
+                    size={20}
+                    color={colors.primary}
+                  />
+                )}
+              </TouchableOpacity>
+            </View>
+          </View>
+        ) : null}
+        {providerTypeError && <ErrorMessage content={providerTypeError} />}
+
         <View style={styles.radioButtonsContainer}>
           <Text style={styles.radioOptionsHeading}>
             Select your account type:

@@ -1,7 +1,8 @@
-const loginValidator = ({ email, password, selectedAccount }) => {
+const loginValidator = ({ email, password, selectedAccount, providerType }) => {
   let emailError = "";
   let passwordError = "";
   let selectedAccountError = "";
+  let providerTypeError = "";
   let hasErrors = false;
 
   // Email validation using a regular expression
@@ -20,6 +21,9 @@ const loginValidator = ({ email, password, selectedAccount }) => {
   if (!selectedAccount) {
     selectedAccountError = "You have to choose your account type";
   }
+  if (!providerType) {
+    providerTypeError = "You have to choose your provider type";
+  }
 
   // Return the validation results
   return [
@@ -28,6 +32,7 @@ const loginValidator = ({ email, password, selectedAccount }) => {
       emailError,
       passwordError,
       selectedAccountError,
+      providerTypeError,
     },
   ];
 };
